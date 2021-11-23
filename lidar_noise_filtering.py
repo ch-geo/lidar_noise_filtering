@@ -17,6 +17,7 @@ def range_filter(scan, min, max):
 
 # Replaces every value of the scan by calculating the median of the neighboring values
 # The number of neighboring values is defined by window.
+# Alternative sol: Using Mean instead of Median.
 def serial_median(scan, window):
     for i in range(len(scan) - window):
         scan[i] = median(scan[i:i+window])
