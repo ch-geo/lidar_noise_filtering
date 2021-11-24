@@ -33,6 +33,7 @@ def temporal_median(scans, scan_length):
     medians = []
     for i in range(scan_length):
         medians.append(median(scan[i] for scan in scans))
+    medians = tuple(medians)
     return medians
 
 # Method to update queue and keep specified window size, 
