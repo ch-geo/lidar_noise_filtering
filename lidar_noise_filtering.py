@@ -46,7 +46,7 @@ def callback(msg):
 
 # -----------------------------Range Filter (Min/Max)-----------------------------
        
-        msg.ranges = range_filter(msg.ranges, 0.06, 4.5) #0.06 as min seems good
+        msg.ranges = range_filter(msg.ranges, 0.06, 4.5) #0.06 as min seems good/ max needs to be defined
 
 # -----------------------------Serial Median--------------------------------------
        
@@ -55,7 +55,7 @@ def callback(msg):
 # -----------------------------Temporal Median (Optimal)-----------------------------
       
         queue_upd(msg.ranges, 5) #15scans in 1sec. Keeping the 5 last of them seems good
-        msg.ranges = temporal_median(queue, len(scan))
+        msg.ranges = temporal_median(queue, len(scan)) #you can replace len(scan) with the actual side of the lidar reading
 
 queue = []  
 rospy.init_node('noise_filtering')
