@@ -8,19 +8,23 @@ from statistics import median
 # Crops all the values that are below_min/above_max
 # and replaces them with the defined min_value/max_value
 def range_filter(scan, min, max):
+    scan = list(scan)
     for i in range(len(scan)):
         if scan[i] < min:
             scan[i] = min
         elif scan[i] > max:
             scan[i] = max
+    scan = tuple(scan)
     return scan
 
 # Replaces every value of the scan by calculating the median of the neighboring values
 # The number of neighboring values is defined by window.
 # Alternative sol: Using Mean instead of Median.
 def serial_median(scan, window):
+    scan = list(scan)
     for i in range(len(scan) - window):
         scan[i] = median(scan[i:i+window])
+    scan = tuple(scan)
     return scan
 
 # Returns the median of the current and the previous scans.
