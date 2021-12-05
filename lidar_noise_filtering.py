@@ -9,10 +9,10 @@ from statistics import median
 # and replaces them with the defined min_value/max_value
 def range_filter(scan, min, max):
     scan = list(scan)
-    for i in range(len(scan)):
-        if scan[i] < min:
+    for i, elem in enumerate(scan):
+        if elem < min:
             scan[i] = min
-        elif scan[i] > max:
+        elif elem > max:
             scan[i] = max
     scan = tuple(scan)
     return scan
@@ -42,6 +42,19 @@ def queue_upd(scan, window):
         if len(queue) == window:
                 queue.pop(0)
 
+
+def median_deviation(scan, windows_num):
+    limit = int(len(scan)/windows_num)
+    result = []
+    for i in range(windows_num):
+        temp = scan[limit * i:limit * (i+1)]
+        med = median(temp)
+        for j, elem in enumerate(temp):
+            if (med - elem)/med*100 > 20:
+                temp[j] = None
+        result.extend(temp)
+    return result
+
 def callback(msg):
         rate = rospy.Rate(15)
 
@@ -56,7 +69,7 @@ def callback(msg):
 # -----------------------------Temporal Median (Optimal)-----------------------------
       
         queue_upd(msg.ranges, 5) #15scans in 1sec. Keeping the 5 last of them seems good
-        msg.ranges = temporal_median(queue, len(scan)) #you can replace len(scan) with the actual side of the lidar reading
+        msg.ranges = temporal_median(queue, len(msg.ranges)) #you can replace len(msg.ranges) with the actual size of the lidar reading
 
 queue = []  
 rospy.init_node('noise_filtering')
