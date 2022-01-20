@@ -4,4 +4,4 @@ Scripts developed in order to filter noise in [LaserScans](http://docs.ros.org/e
 
 # Topics
 
-LiDAR Noise Filtering scripts subscribe to '/scan_multi' and publish to '/filtered_scans'. [sensor_msgs/LaserScan](http://docs.ros.org/en/api/sensor_msgs/html/msg/LaserScan.html)
+LiDAR Noise Filtering scripts subscribe to `/scan_multi` and publish to `/filtered_scans`. [sensor_msgs/LaserScan](http://docs.ros.org/en/api/sensor_msgs/html/msg/LaserScan.html)
