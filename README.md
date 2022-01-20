@@ -1,6 +1,6 @@
 # LiDAR Noise Filtering
 
-Scripts developed in order to filter noise in [LaserScans](http://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/LaserScan.html), gathered by TALOS' LiDAR sensors. This is done by extracting the scan transmited by `/scan_multi`, applying the designed filters, reconstructing the LaserScan message and publishing it to `/filtered_scans` topic.
+Scripts developed to filter noise in [LaserScans](http://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/LaserScan.html), gathered by TALOS' LiDAR sensors. This is done by extracting the scan transmitted by `/scan_multi`, applying the designed filters, reconstructing the LaserScan message and publishing it to `/filtered_scans` topic.
 
 ## Messages 
 
@@ -24,6 +24,6 @@ Common practice in the following scripts is using a `Range Filter` before applyi
 
 ## Median Deviation
 
-`median_deviation()` divides the received scan in regions defined by a number of rays. For each region the algorith calculates the [median](https://docs.python.org/3/library/statistics.html#statistics.median) and then checks if any element of the region deviates from it more than 20%. In that case replace the element value with an extreme one eg. 10m. Then it returns the filtered scan.
+`median_deviation()` divides the received scan in regions defined by a number of rays. For each region the algorithm calculates the [median](https://docs.python.org/3/library/statistics.html#statistics.median) and then checks if any element of the region deviates from it more than 20%. In that case replace the element value with an extreme one e.g. 10m. Then it returns the filtered scan.
 
-The algorith also checks if the procedure of region division leaves any part of the scan exncluded. In that case it performs the same actions for the remainder of the scan.
+The algorithm also checks if the procedure of region division leaves any part of the scan excluded. In that case it performs the same actions for the remainder of the scan.
