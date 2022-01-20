@@ -20,9 +20,10 @@ float32[] intensities
 
 Common practice in the following scripts is using a `Range Filter` before applying their core filter. We apply this practice in order to focus on close proximity noise which creates most of our problems. `Range Filter` replaces values that are below min or above max with None. It returns the filtered scan and the indices of the not None values. An example is being displayed below:
 
-<img src="Images/original_scan.png" alt="original_scan" width="480" height="480"/> <img src="Images/range_filter.png" alt="range_filter" width="480" height="480"/>
+<img src="Images/original_scan.png" alt="original_scan" width="475" height="475"/> <img src="Images/range_filter.png" alt="range_filter" width="475" height="475"/>
 
 ## Median Deviation
 
 `median_deviation()` divides received scan in regions defined by window (number of rays). For each region the algorith calculates the median and then checks if any element of the region deviates from it more than 20%. In that case replace the element value with an extreme one eg. 10m. Then it returns the filtered scan.
-The algorith
+
+The algorith also checks if the procedure of region division leaves any part of the scan exncluded. In that case it performs the same actions for the remainder of the scan.
