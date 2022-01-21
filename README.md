@@ -23,9 +23,9 @@ Common practice in the following scripts is using a `Range Filter` before applyi
 <img src="Images/original_scan.png" alt="original_scan" width="400" height="400"/> <img src="Images/range_filter.png" alt="range_filter" width="400" height="400"/>
 
 #### Parameters
-- `scan :` The extracted scan (msg.ranges)
-- `min :` The defined min
-- `max :` The defined max
+- `scan:` The extracted scan which will be filtered (msg.ranges)
+- `min:` The defined minimum range
+- `max:` The defined maximum range
 
 ## Median Deviation
 
