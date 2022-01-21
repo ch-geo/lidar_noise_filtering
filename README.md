@@ -20,7 +20,7 @@ float32[] intensities
 
 Common practice in the following scripts is using a `Range Filter` before applying their core filter. We perform this practice in order to focus on close proximity noise which creates most of our problems. `Range Filter` replaces values that are below min or above max with None. It returns the filtered scan and the indices of the not None values. An example is being displayed below:
 
-<img src="Images/original_scan.png" alt="original_scan" width="400" height="auto" max-width: "100%"/> <img src="Images/range_filter.png" alt="range_filter" width="400" height="auto" max-width: "100%"/>
+<img src="Images/original_scan.png" alt="original_scan" width="400" height="auto"/> <img src="Images/range_filter.png" alt="range_filter" width="400" height="auto"/>
 
 ## Median Deviation
 
