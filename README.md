@@ -22,6 +22,11 @@ Common practice in the following scripts is using a `Range Filter` before applyi
 
 <img src="Images/original_scan.png" alt="original_scan" width="400" height="400"/> <img src="Images/range_filter.png" alt="range_filter" width="400" height="400"/>
 
+#### Parameters
+- `scan :` The extracted scan (msg.ranges)
+- `min :` The defined min
+- `max :` The defined max
+
 ## Median Deviation
 
 `median_deviation()` divides the received scan in regions defined by a number of rays. For each region the algorithm calculates the [median](https://docs.python.org/3/library/statistics.html#statistics.median) and then checks if any element of the region deviates from it more than 20%. In that case replace the element value with an extreme one e.g. 10m. Then it returns the filtered scan.
