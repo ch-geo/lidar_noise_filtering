@@ -1,6 +1,6 @@
 # LiDAR Noise Filtering
 
-Scripts developed to filter noise in [LaserScans](http://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/LaserScan.html), gathered by TALOS' LiDAR sensors. This is done by extracting the scan transmitted by `/scan_multi`, applying the designed filters, reconstructing the LaserScan message and publishing it to `/filtered_scans` topic.
+Scripts developed to filter noise in [LaserScans](http://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/LaserScan.html), gathered by Talos' LiDAR sensors. This is done by extracting the scan transmitted by `/scan_multi`, applying the designed filters, reconstructing the LaserScan message and publishing it to `/filtered_scans` topic.
 
 ## Messages 
 
