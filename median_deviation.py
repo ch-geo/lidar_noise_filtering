@@ -8,10 +8,10 @@ from statistics import median
 # Range Filter
 def range_filter(scan, min, max):
     index = []
-    for i, elem in enumerate(scan) :
-        if elem < min:
+    for i, ray in enumerate(scan) :
+        if ray < min:
             scan[i] = None
-        elif elem > max:
+        elif ray > max:
             scan[i] = None
         else :
             index.append(i)
@@ -20,13 +20,18 @@ def range_filter(scan, min, max):
 # Median Deviation
 def median_deviation(scan, window):
     result = []
-    windows_num = len(scan)//window 
-    mod = len(scan)%window
+    scan_size = len(scan)
+    windows_num = scan_size//window 
+    mod = scan_size%window
     
     for i in range(windows_num):
-        temp = scan[window * i:window * (i+1)]
+        # Extract window from scan and find its median
+        temp = scan[window*i : window*(i+1)]
         med = median(temp)
         
+        # Check the deviation of every ray from median
+        # If it's higher than 20% replace its value with an extreme
+        # None value is not  acceptable
         for j, elem in enumerate(temp):
             if (med - elem)/med*100 > 20:
                 temp[j] = 10
@@ -47,14 +52,16 @@ def median_deviation(scan, window):
 def callback(msg):
         rate = rospy.Rate(15)
         scan = list(msg.ranges)
-       
-        res, index = range_filter(scan, min = msg.range_min, max = 1)
-        not_none = []
-        for i in index:
-            not_none.append(res[i])
         
+        # Get a list of rays in specified range and their indexes 
+        range_scan, index = range_filter(scan, min = msg.range_min, max = 1)
+        not_none = []
+
+        # Get not none values 
+        not_none = [range_scan[i] for i in index if range_scan[i] is not None]        
         not_none = median_deviation(not_none,10)
 
+        # Replace the old values of the scan with the filtered ones 
         for i in index:
             scan[i] = not_none.pop(0) 
         
