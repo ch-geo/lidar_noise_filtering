@@ -1,6 +1,9 @@
 # LiDAR Noise Filtering
 
-Scripts developed to filter noise in [LaserScans](http://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/LaserScan.html), gathered by an Industrial Mobile Robot's LiDAR sensors. This is done by extracting the scan transmitted by `/scan_multi`, applying the designed filters, reconstructing the LaserScan message and publishing it to `/filtered_scans` topic.
+Scripts developed to filter noise in [LaserScans](http://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/LaserScan.html), gathered by an Industrial Mobile Robot's LiDAR sensors. The code subscribes to a LaserScan topic, filters out any readings outside a specified range, applies median deviation filtering to remove noise, and publishes the filtered LaserScan to a new topic.
+
+**Note:** Modify the topics for the subscriber and publisher to match your robot's configuration.
+
 
 ## Messages 
 
@@ -24,8 +27,8 @@ Common practice in the following scripts is using a `Range Filter` before applyi
 
 #### Parameters
 - `scan:` The scan which will be filtered
-- `min:` The defined minimum range
-- `max:` The defined maximum range
+- `min:` The minimum range for a laser scan reading to be included
+- `max:` The maximum range for a laser scan reading to be included
 
 ## Median Deviation
 
@@ -35,4 +38,8 @@ The algorithm also checks if the procedure of region division leaves any part of
 
 #### Parameters
 - `scan:` The scan which will be filtered
-- `window:` Number of rays which will form a region
+- `window:` The size of the sliding window used for median deviation filtering
+
+## License
+
+This code is licensed under the MIT License.
